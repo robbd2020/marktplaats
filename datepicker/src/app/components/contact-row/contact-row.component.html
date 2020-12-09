@@ -1,0 +1,19 @@
+<ng-container *ngIf="!contact.edit">
+<td> {{contact | contactName}} </td>
+<td>{{contact.email}}</td>
+  <button class="btn btn-primary" (click)="edit(contact)">
+    <td>Edit</td>
+  </button>
+  <button class="btn btn-danger" (click)="delete(contact)">
+    <td>Delete</td>
+  </button>
+</ng-container>
+
+<ng-container *ngIf="contact.edit">
+<td>
+  <input type="text" [(ngModel)]="contact.firstName" name="firstName" id="inputFirstName">
+  <input type="text" [(ngModel)]="contact.surname" name="surname" id="inputSurname">
+</td>
+<td ><input type="text" [(ngModel)]="contact.email" name="email" id="inputEmail"></td>
+  <button class="btn btn-primary" (click)="save(contact)"><td>Save</td></button>
+</ng-container>

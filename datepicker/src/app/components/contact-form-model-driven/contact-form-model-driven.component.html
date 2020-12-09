@@ -1,0 +1,28 @@
+<h2>Add contact</h2>
+
+<div class="flex">
+  <form (ngSubmit)="addContact()" [formGroup]="addContactForm" novalidate>
+    <div>
+      <label for="firstName">First name:</label>
+      <input type="text" id="firstName" formControlName="firstName">
+      <span *ngIf="addContactForm.get('firstName')?.touched && addContactForm.get('firstName')?.invalid">*</span>
+      <span *ngIf="addContactForm.get('firstName')?.touched && addContactForm.get('firstName')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addContactForm.get('firstName')?.touched && addContactForm.get('firstName')?.errors?.pattern">Alleen letters graag</span>
+    </div>
+    <div>
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" formControlName="surname">
+      <span *ngIf="addContactForm.get('surname')?.touched && addContactForm.get('surname')?.invalid">*</span>
+      <span *ngIf="addContactForm.get('surname')?.touched && addContactForm.get('surname')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addContactForm.get('surname')?.touched && addContactForm.get('surname')?.errors?.pattern">Alleen letters graag</span>
+    </div>
+    <div>
+      <label for="email">E-mail address:</label>
+      <input type="text" id="email" formControlName="email">
+      <span *ngIf="addContactForm.get('email')?.touched && addContactForm.get('email')?.invalid">*</span>
+      <span *ngIf="addContactForm.get('email')?.touched && addContactForm.get('email')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addContactForm.get('email')?.touched && addContactForm.get('email')?.errors?.email">Een echt e-mailadres graag</span>
+      <button>Add</button>
+    </div>
+  </form>
+</div>

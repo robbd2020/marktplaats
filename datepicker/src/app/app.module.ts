@@ -17,6 +17,8 @@ import {ContactNamePipe} from "./pipes/contact-name.pipe";
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductRowComponent } from './components/product-row/product-row.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import {GebruikerNamePipe} from "./pipes/gebruiker-name.pipe";
+import { SearchProductComponent } from './components/search-product/search-product.component';
 
 const routes: Route[] = [
   {path:'datepicker', component: DatePickerComponent},
@@ -36,9 +38,11 @@ const routes: Route[] = [
     ContactRowComponent,
     ContactFormModelDrivenComponent,
     ContactNamePipe,
+    GebruikerNamePipe,
     ProductListComponent,
     ProductRowComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SearchProductComponent
   ],
   imports: [      // componenten van een ander die ik nodig heb
     BrowserModule,

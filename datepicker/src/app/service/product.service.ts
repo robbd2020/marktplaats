@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Product} from "../models/product";
+import {tap} from "rxjs/operators";
 
 
 @Injectable({
@@ -34,6 +35,14 @@ export class ProductService {
     // deleting contacts, we can use this same observable to notify subscribers
     // of changes.
     return this.productenUpdated;
+  }
+
+  search(term: string): void {
+    // return !term.trim() ?
+    //   of([]) :
+    const trimmedTerm = term.trim();
+    this.http.get<Product[]>(`${this.url}/zoeken/?q=${trimmedTerm}`)
+      .subscribe(products => this.productenUpdated.next(products));
   }
 
   edit(c: Product): void {

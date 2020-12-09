@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Contact} from '../../models/contact';
-import {ContactService} from '../../service/contact.service';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../models/product';
 import {ProductService} from '../../service/product.service';
 
@@ -13,6 +11,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   popup: boolean;
   product: Product;
+  selectedProduct: Product;
 
   ngOnInit(): void {
     const productsUpdated$ = this.productService.getProducten();
@@ -26,8 +25,8 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) {
   }
 
-  handleClick(product: Product): void{
-    this.product = product;
+  handleClick(product: Product) {
+    this.selectedProduct = product;
     this.popup = true;
   }
 }

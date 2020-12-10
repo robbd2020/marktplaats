@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GebruikerService} from '../../service/gebruiker.service';
 
@@ -8,6 +8,7 @@ import {GebruikerService} from '../../service/gebruiker.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   addLoginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private gebruikerService: GebruikerService) {
@@ -18,8 +19,8 @@ export class LoginComponent {
   }
 
   login(): void {
-    console.log(this.addLoginForm.value());
-    this.gebruikerService.getGebruikerMetEmailEnWachtwoord(this.addLoginForm.value());
+    console.log(this.addLoginForm.value);
+    this.gebruikerService.getGebruikerMetEmailEnWachtwoord(this.addLoginForm.value);
     this.addLoginForm.reset();
   }
 

@@ -19,6 +19,7 @@ export class ContactFormModelDrivenComponent {
   }
 
   addContact(): void {
+    console.log(this.addContactForm.value);
     this.contactService.addContact(this.addContactForm.value);
     this.addContactForm.reset();
   }

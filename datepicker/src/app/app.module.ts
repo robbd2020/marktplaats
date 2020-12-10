@@ -19,6 +19,7 @@ import { ProductRowComponent } from './components/product-row/product-row.compon
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import {GebruikerNamePipe} from "./pipes/gebruiker-name.pipe";
 import { SearchProductComponent } from './components/search-product/search-product.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Route[] = [
   {path:'datepicker', component: DatePickerComponent},
@@ -42,7 +43,8 @@ const routes: Route[] = [
     ProductListComponent,
     ProductRowComponent,
     ProductDetailsComponent,
-    SearchProductComponent
+    SearchProductComponent,
+    LoginComponent
   ],
   imports: [      // componenten van een ander die ik nodig heb
     BrowserModule,

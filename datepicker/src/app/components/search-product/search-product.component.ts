@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
-import {ProductService} from "../../service/product.service";
-import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
+import {Subject} from 'rxjs';
+import {ProductService} from '../../service/product.service';
+import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-product',
@@ -27,7 +27,8 @@ export class SearchProductComponent implements OnInit {
 
       // ignore new term if same as previous term
       distinctUntilChanged(),
-
+      // search only with three or more chars
+      // filter(value => value.length > 2 ),
       // now execute the search
       map((term: string) => this.service.search(term)),
     ).subscribe();

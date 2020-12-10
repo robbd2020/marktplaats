@@ -1,6 +1,7 @@
 import {Winkelwagen} from "./winkelwagen";
 
 export interface Gebruiker {
+  id?: number;
   voornaam: string;
   achternaam: string;
   emailadres: string;

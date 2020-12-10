@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Contact } from 'src/app/models/contact';
-import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
-import {ContactService} from "../../service/contact.service";
+import { Component } from '@angular/core';
+import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
+import {ContactService} from '../../service/contact.service';
 
 @Component({
   selector: 'app-contact-form-model-driven',
@@ -23,7 +22,6 @@ export class ContactFormModelDrivenComponent {
     this.contactService.addContact(this.addContactForm.value);
     this.addContactForm.reset();
   }
-
 }
 
 function emailValidator(control: AbstractControl) {
@@ -31,7 +29,7 @@ function emailValidator(control: AbstractControl) {
   if (!control.value) {
     return null;
   }
-  let regex = /^.+@.+\.[a-zA-Z]+$/;
+  const regex = /^.+@.+\.[a-zA-Z]+$/;
   return regex.test(control.value) ? null : { email: { valid: false } };
 }
 

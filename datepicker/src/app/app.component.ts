@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {GebruikerService} from './service/gebruiker.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'datepicker';
   today = new Date();
+
+
+  constructor(public gebruikerService: GebruikerService){}
+
 }

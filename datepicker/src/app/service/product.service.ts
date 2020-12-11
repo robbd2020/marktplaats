@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {Product} from "../models/product";
-import {tap} from "rxjs/operators";
+import {Observable, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Product} from '../models/product';
 
 
 @Injectable({

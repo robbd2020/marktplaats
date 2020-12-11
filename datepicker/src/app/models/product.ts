@@ -1,7 +1,7 @@
-import {Bezorgwijze} from "./bezorgwijze";
-import {Winkelwagen} from "./winkelwagen";
-import {Categorie} from "./categorie";
-import {Gebruiker} from "./gebruiker";
+import {Bezorgwijze} from './bezorgwijze';
+import {Winkelwagen} from './winkelwagen';
+import {Categorie} from './categorie';
+import {Gebruiker} from './gebruiker';
 
 export interface Product {
   id?: number;

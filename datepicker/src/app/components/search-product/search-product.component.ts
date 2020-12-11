@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Subject} from 'rxjs';
 import {ProductService} from '../../service/product.service';
-import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-product',

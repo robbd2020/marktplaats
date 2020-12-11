@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from "@angular/core";
-import {Gebruiker} from "../models/gebruiker";
+import {Pipe, PipeTransform} from '@angular/core';
+import {Gebruiker} from '../models/gebruiker';
 
 @Pipe({name: 'gebruikerName'})
 export class GebruikerNamePipe implements PipeTransform {

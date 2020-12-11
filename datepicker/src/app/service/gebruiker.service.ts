@@ -16,7 +16,15 @@ export class GebruikerService {
   }
 
   getGebruikerMetEmailEnWachtwoord(l: Login): void {
-    this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((g) => this.ingelogdeGebruiker = g);
+    this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((g) => {this.ingelogdeGebruiker = g;
+                                                                        console.log(this.ingelogdeGebruiker); });
+  }
+
+  uitloggen(): void{
+    console.log('ik probeer nu uit te loggen');
+    console.log(this.ingelogdeGebruiker);
+    this.ingelogdeGebruiker = null;
+    console.log(this.ingelogdeGebruiker);
   }
 
   edit(c: Gebruiker): void {

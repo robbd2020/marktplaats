@@ -1,4 +1,4 @@
-import {Winkelwagen} from "./winkelwagen";
+import {Winkelwagen} from './winkelwagen';
 
 export interface Gebruiker {
   id?: number;

@@ -1,10 +1,11 @@
 <ul>
   <li><a routerLink="/home" routerLinkActive="activeMenu">Home</a></li>
-  <li><a routerLink="/datepicker" routerLinkActive="activeMenu">Artikelen</a></li>
-  <li><a routerLink="/formdemo" routerLinkActive="activeMenu">Form demo</a></li>
-  <li><button (click)="gebruikerService.uitloggen()">Uitloggen</button></li>
-  <!-- <li><a routerLink="/formsdemo" routerLinkActive="activeMenu">Forms demo</a></li> -->
-  <!-- <li><a>{{today}}</a></li> -->
+  <li><a routerLink="/artikelen" routerLinkActive="activeMenu">Artikelen</a></li>
+  <li><a routerLink="/producttoevoegen" routerLinkActive="activeMenu">Product toevoegen</a></li>
+
+  <li *ngIf="this.gebruikerService.ingelogdeGebruiker!=null" id="laatNaamIngelogdeZien">Ingelogd als {{this.gebruikerService.ingelogdeGebruiker | gebruikerName}}
+  <li *ngIf="this.gebruikerService.ingelogdeGebruiker!=null"><a routerLink="/login" routerLinkActive="activeMenu" (click)="gebruikerService.uitloggen()">Uitloggen</a></li>
+  <li *ngIf="this.gebruikerService.ingelogdeGebruiker==null"></li>
 </ul>
 
 <router-outlet></router-outlet>

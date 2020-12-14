@@ -1,0 +1,52 @@
+<h2>Product aanbieden</h2>
+
+<div class="flex">
+  <form (ngSubmit)="addProduct()" [formGroup]="addProductForm" novalidate>
+
+    <div>
+      <label for="naam">Titel:</label>
+      <input type="text" id="naam" formControlName="naam">
+      <span *ngIf="addProductForm.get('email')?.touched && addProductForm.get('email')?.invalid">*</span>
+      <span
+        *ngIf="addProductForm.get('email')?.touched && addProductForm.get('email')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addProductForm.get('email')?.touched && addProductForm.get('email')?.errors?.email">Een echt e-mailadres graag</span>
+    </div>
+    <div>
+      <label for="beschrijving">Beschrijving:</label>
+      <input type="text" id="beschrijving" formControlName="beschrijving">
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.invalid">*</span>
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.errors?.minlength">Minimaal acht tekens</span>
+    </div>
+    <div>
+      <label for="prijs">Prijs:</label>
+      <input type="number" id="prijs" formControlName="prijs">
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.invalid">*</span>
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addProductForm.get('wachtwoord')?.touched && addProductForm.get('wachtwoord')?.errors?.minlength">Minimaal acht tekens</span>
+    </div>
+    <div>
+      <label for="categorie">Categorie:</label>
+      <select formControlName="categorie" id="categorie" class="form-control">
+        <option *ngFor="let cat of this.categorieen" [ngValue]="cat">{{cat.categorienaam}}</option>
+      </select>
+    </div>
+    <div>
+      <label>Bezorgwijzen:</label>
+      <div *ngFor="let data of this.gebruikerService.ingelogdeGebruiker.ondersteundeBezorgwijzeLijst; let i=index">
+        <label>
+          <input type="checkbox" [value]="data" (change)="onCheckboxChange($event)"/>
+          {{data.toString() | bezorgwijze}}
+        </label>
+      </div>
+
+      <p class="error" *ngIf="addProductForm.get('categorie')?.touched && addProductForm.get('categorie')?.errors?.required">
+        Selecteer minimaal één bezorgwijze.
+      </p>
+
+    </div>
+    <button [disabled]="addProductForm.invalid">Verstuur</button>
+  </form>
+</div>
+
+<h3>{{this.productService.bericht$ | async}}</h3>

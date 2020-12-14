@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) {
   }
 
-  handleClick(product: Product) {
+  handleClick(product: Product): void {
     this.selectedProduct = product;
     this.popup = true;
   }

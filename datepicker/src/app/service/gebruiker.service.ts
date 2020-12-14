@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Gebruiker} from '../models/gebruiker';
 import {Login} from '../models/login';
+import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +13,29 @@ export class GebruikerService {
   private url = 'http://localhost:9080/mp/resources';
 
   ingelogdeGebruiker: Gebruiker;
+  ingelogd$ = new Subject<Gebruiker>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   getGebruikerMetEmailEnWachtwoord(l: Login): void {
-    this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((g) => {this.ingelogdeGebruiker = g;
-                                                                        console.log(this.ingelogdeGebruiker); });
+    this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((data) => {
+      this.ingelogdeGebruiker = data;
+      this.ingelogd$.next(data);
+    });
   }
 
-  uitloggen(): void{
-    console.log('ik probeer nu uit te loggen');
-    console.log(this.ingelogdeGebruiker);
+  uitloggen(): void {
     this.ingelogdeGebruiker = null;
-    console.log(this.ingelogdeGebruiker);
+    this.router.navigate(['/login']);
   }
+
 
   edit(c: Gebruiker): void {
-    this.http.put(`${this.url}/${c.id}`, c).subscribe();
+    this.http.put(`${this.url}/gebruikers/${this.ingelogdeGebruiker.id}`, c).subscribe();
   }
 
   delete(c: Gebruiker): void {
-    this.http.delete(`${this.url}/${c.id}`).subscribe();
+    this.http.delete(`${this.url}/gebruikers/${c.id}`).subscribe();
   }
 }

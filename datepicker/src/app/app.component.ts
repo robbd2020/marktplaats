@@ -7,7 +7,7 @@ import {GebruikerService} from './service/gebruiker.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'datepicker';
+  title = 'artikelen';
   today = new Date();
 
 

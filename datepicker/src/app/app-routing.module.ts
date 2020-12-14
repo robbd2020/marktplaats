@@ -3,9 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {ProductOverviewComponent} from './components/product-overview/product-overview.component';
 import {AuthGuard} from './service/authguard';
 import {LoginComponent} from './components/login/login.component';
+import {AddProductComponent} from './components/add-product/add-product.component';
 
 const routes: Routes = [
-  { path: '', component: ProductOverviewComponent, canActivate: [AuthGuard] },
+  { path: 'artikelen', component: ProductOverviewComponent, canActivate: [AuthGuard] },
+  // { path: 'producttoevoegen', component: AddProductComponent, canActivate: [AuthGuard] },
+  { path: 'producttoevoegen', component: AddProductComponent },
   // { path: '', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 

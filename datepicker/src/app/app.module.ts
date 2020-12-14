@@ -15,9 +15,11 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import {GebruikerNamePipe} from './pipes/gebruiker-name.pipe';
 import { SearchProductComponent } from './components/search-product/search-product.component';
 import { LoginComponent } from './components/login/login.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import {BezorgwijzePipe} from './pipes/bezorgwijze.pipe';
 
 const routes: Route[] = [
-  {path: 'datepicker', component: ProductOverviewComponent},
+  {path: 'producten', component: ProductOverviewComponent},
   {path: 'formdemo', component: FormDemoComponent},
   {path: 'home', component: HomeComponent},
   {path: '', component: HomeComponent}
@@ -30,11 +32,13 @@ const routes: Route[] = [
     FormDemoComponent,
     HomeComponent,
     GebruikerNamePipe,
+    BezorgwijzePipe,
     ProductListComponent,
     ProductRowComponent,
     ProductDetailsComponent,
     SearchProductComponent,
-    LoginComponent
+    LoginComponent,
+    AddProductComponent
   ],
   imports: [      // componenten van een ander die ik nodig heb
     BrowserModule,

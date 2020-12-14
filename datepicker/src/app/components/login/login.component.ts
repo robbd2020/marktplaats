@@ -23,12 +23,9 @@ export class LoginComponent {
   }
 
   login(): void {
-    console.log('nu inloggen');
-    console.log(this.addLoginForm.value);
     this.gebruikerService.getGebruikerMetEmailEnWachtwoord(this.addLoginForm.value);
-    this.addLoginForm.reset();
-    this.router.navigate(['/producten'] );
-
+    this.gebruikerService.ingelogd$.subscribe(() => this.router.navigate(['/artikelen']));
+    // this.addLoginForm.reset();
   }
 
 }

@@ -12,22 +12,28 @@ export class ProductService {
   private url = 'http://localhost:9080/mp/resources/producten';
 
   productenUpdated = new Subject<Product[]>(); // event, can contain Product[]
+  bericht$ = new Subject<string>();
 
   constructor(private http: HttpClient) {
   }
 
-  productList: Product[] = [];
 
-  // addContact(c: Contact): void {
-  //   this.http.post<Contact>(this.url, c) // post contact to server
-  //     .subscribe(() => this.getContacts());  // when posted: getAll (refresh)
-  // }
+  addProduct(product: Product): void {
+    this.http.post<Product>(this.url, product) // post contact to server
+      .subscribe(data => {
+        this.getProducten();
+        this.bericht$.next(`Product ${data.naam} is toegevoegd.`);
+      },
+        error => {
+        this.bericht$.next(`Het toevoegen van het product is helaas mislukt. Reden: ${error.statusText}`);
+        });  // when posted: getAll (refresh)
+  }
 
   getProducten(): Observable<Product[]> {
     this.http.get<Product[]>(this.url) // get contacts from server
       .subscribe(  // when the results arrive (some time in the future):
         // rise the contactsUpdated event and supply  the contacts
-        producten => this.productenUpdated.next(producten)
+        data => this.productenUpdated.next(data)
       );
 
     // we're using a custom subject here so when adding, editing or

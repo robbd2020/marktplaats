@@ -1,4 +1,5 @@
 import {Winkelwagen} from './winkelwagen';
+import {Bezorgwijze} from './bezorgwijze';
 
 export interface Gebruiker {
   id?: number;
@@ -12,5 +13,6 @@ export interface Gebruiker {
   huisnummertoevoeging?: string;
   isActief?: boolean;
   winkelwagen: Winkelwagen;
+  ondersteundeBezorgwijzeLijst?: Set<Bezorgwijze>;
 
 }

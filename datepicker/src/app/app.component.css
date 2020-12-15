@@ -16,8 +16,12 @@ ul {
 
   }
 
+  #rechterBlok {
+    float:right;
+  }
+
 #laatNaamIngelogdeZien {
-  float: right;
+  float: left;
   /*direction: revert;*/
   color: #caa6a6;
   text-align: center;
@@ -27,7 +31,7 @@ ul {
 
 li:last-child {
   border-right: none;
-  float: right;
+  float: left;
   direction: revert;
 }
   li a, li #today {
@@ -46,3 +50,12 @@ li:last-child {
     color: white;
     background-color: #585858;
   }
+
+p.error {
+  color: red
+}
+
+#prijs {
+  text-align: right;
+}
+

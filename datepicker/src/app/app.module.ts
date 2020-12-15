@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
 import { Route, RouterModule } from '@angular/router';
-import { FormDemoComponent } from './components/form-demo/form-demo.component';
-import { HomeComponent } from './pages/home/home';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductRowComponent } from './components/product-row/product-row.component';
@@ -20,17 +18,13 @@ import {BezorgwijzePipe} from './pipes/bezorgwijze.pipe';
 
 const routes: Route[] = [
   {path: 'producten', component: ProductOverviewComponent},
-  {path: 'formdemo', component: FormDemoComponent},
-  {path: 'home', component: HomeComponent},
-  {path: '', component: HomeComponent}
+  {path: '', component: ProductOverviewComponent}
 ];
 
 @NgModule({
   declarations: [ // componenten van mijzelf
     AppComponent,
     ProductOverviewComponent,
-    FormDemoComponent,
-    HomeComponent,
     GebruikerNamePipe,
     BezorgwijzePipe,
     ProductListComponent,

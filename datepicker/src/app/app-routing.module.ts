@@ -7,9 +7,7 @@ import {AddProductComponent} from './components/add-product/add-product.componen
 
 const routes: Routes = [
   { path: 'artikelen', component: ProductOverviewComponent, canActivate: [AuthGuard] },
-  // { path: 'producttoevoegen', component: AddProductComponent, canActivate: [AuthGuard] },
-  { path: 'producttoevoegen', component: AddProductComponent },
-  // { path: '', canActivate: [AuthGuard] },
+  { path: 'producttoevoegen', component: AddProductComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 
   // otherwise redirect to home

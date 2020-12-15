@@ -43,8 +43,6 @@ export class ProductService {
   }
 
   search(term: string): void {
-    // return !term.trim() ?
-    //   of([]) :
     const trimmedTerm = term.trim();
     this.http.get<Product[]>(`${this.url}/zoeken/?q=${trimmedTerm}`)
       .subscribe(products => this.productenUpdated.next(products));

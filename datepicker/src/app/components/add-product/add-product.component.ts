@@ -8,7 +8,7 @@ import {CategorieService} from '../../service/categorie.service';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['../../app.component.css']
 })
 export class AddProductComponent implements OnInit {
 

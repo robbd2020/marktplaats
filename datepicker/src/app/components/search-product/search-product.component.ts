@@ -6,7 +6,6 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 @Component({
   selector: 'app-search-product',
   templateUrl: './search-product.component.html',
-  styleUrls: ['./search-product.component.css']
 })
 export class SearchProductComponent implements OnInit {
 

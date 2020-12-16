@@ -13,7 +13,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private gebruikerService: GebruikerService,
+    public gebruikerService: GebruikerService,
     private router: Router) {
     this.addLoginForm = this.fb.group({
       email: ['', [Validators.required, emailValidator]],
@@ -22,6 +22,7 @@ export class LoginComponent {
   }
 
   login(): void {
+    // this.addLoginForm.controls.wachtwoord.setValue(shajs('sha256').update(this.addLoginForm.get('wachtwoord')).digest('hex'));
     this.gebruikerService.getGebruikerMetEmailEnWachtwoord(this.addLoginForm.value);
     this.gebruikerService.ingelogd$.subscribe(() => this.router.navigate(['/artikelen']));
     // this.addLoginForm.reset();

@@ -1,6 +1,6 @@
 export enum Bezorgwijze {
-  AFHALEN = 'Afhalen',
-  VERZENDEN = 'Verzenden',
-  Magazijn = 'MAGAZIJN',
-  REMBOURS = 'Rembours'
+  AFHALEN = 'AFHALEN',
+  VERZENDEN = 'VERZENDEN',
+  MAGAZIJN = 'MAGAZIJN',
+  REMBOURS = 'REMBOURS'
 }

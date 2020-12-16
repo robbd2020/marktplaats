@@ -1,0 +1,74 @@
+<h2>Gebruiker gegevens</h2>
+
+<div class="flex">
+  <form (ngSubmit)="addGebruiker()" [formGroup]="addGebruikerForm" novalidate>
+
+    <div>
+      <label for="voornaam">Voornaam:</label>
+      <input type="text" id="voornaam" formControlName="voornaam" [disabled]="lock">
+      <span *ngIf="addGebruikerForm.get('voornaam')?.touched && addGebruikerForm.get('voornaam')?.invalid">*</span>
+      <span
+        *ngIf="addGebruikerForm.get('voornaam')?.touched && addGebruikerForm.get('voornaam')?.errors?.required">Vul in aub</span>
+    </div>
+    <div>
+      <label for="achternaam">Achternaam:</label>
+      <input type="text" id="achternaam" formControlName="achternaam">
+      <span *ngIf="addGebruikerForm.get('achternaam')?.touched && addGebruikerForm.get('achternaam')?.invalid">*</span>
+      <span *ngIf="addGebruikerForm.get('achternaam')?.touched && addGebruikerForm.get('achternaam')?.errors?.required">Vul in aub</span>
+    </div>
+    <div>
+      <label for="emailadres">E-mail adres:</label>
+      <input type="email" id="emailadres" formControlName="emailadres">
+      <span *ngIf="addGebruikerForm.get('emailadres')?.touched && addGebruikerForm.get('emailadres')?.invalid">*</span>
+      <span *ngIf="addGebruikerForm.get('emailadres')?.touched && addGebruikerForm.get('emailadres')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addGebruikerForm.get('emailadres')?.touched && addGebruikerForm.get('emailadres')?.errors?.email">Een echt e-mailadres graag</span>
+    </div>
+    <div>
+      <label for="huisnummer">Huisnummer:</label>
+      <input type="number" id="huisnummer" formControlName="huisnummer">
+      <span *ngIf="addGebruikerForm.get('huisnummer')?.touched && addGebruikerForm.get('huisnummer')?.invalid">*</span>
+      <span *ngIf="addGebruikerForm.get('huisnummer')?.touched && addGebruikerForm.get('huisnummer')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addGebruikerForm.get('huisnummer')?.touched && addGebruikerForm.get('huisnummer')?.errors?.pattern">Alleen getallen</span>
+    </div>
+    <div>
+      <label for="huisnummertoevoeging">Toevoeging:</label>
+      <input type="text" id="huisnummertoevoeging" formControlName="huisnummertoevoeging">
+      <span
+        *ngIf="addGebruikerForm.get('huisnummertoevoeging')?.touched && addGebruikerForm.get('huisnummertoevoeging')?.invalid">*</span>
+    </div>
+    <div>
+      <label for="postcode">Postcode:</label>
+      <input type="text" id="postcode" formControlName="postcode">
+      <span *ngIf="addGebruikerForm.get('postcode')?.touched && addGebruikerForm.get('postcode')?.invalid">*</span>
+      <span *ngIf="addGebruikerForm.get('postcode')?.touched && addGebruikerForm.get('postcode')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addGebruikerForm.get('postcode')?.touched && addGebruikerForm.get('postcode')?.errors?.pattern">Een geldige postcode graag</span>
+    </div>
+    <div>
+      <label>Bezorgwijzen:</label>
+      <div *ngFor="let item of alleBezorgwijzen; let i=index">
+        <label>
+          <input type="checkbox" [value]="item" [disabled]="lock" [checked]="isChecked(item)"
+                 (change)="onCheckboxChange($event, item)"/> <!--this.ondersteundeBezorgwijzen.has(item)-->
+          {{item.toString() | bezorgwijze}}
+        </label>
+      </div>
+
+      <p class="error"
+         *ngIf="addGebruikerForm.get('categorie')?.touched && addGebruikerForm.get('categorie')?.errors?.required">
+        Selecteer minimaal één bezorgwijze.
+      </p>
+
+    </div>
+    <h3>{{this.gebruikerService.bericht$ | async}}</h3>
+    <ng-container *ngIf="this.lock">
+      <button type="button" (click)="this.changeEditing()">Pas aan</button>
+    </ng-container>
+    <ng-container *ngIf="!this.lock">
+      <button type="button" (click)="this.changeEditing()">Annuleer</button>
+    </ng-container>
+    <ng-container *ngIf="!this.lock">
+      <button type="submit">Verstuur</button>
+    </ng-container>
+  </form>
+</div>
+

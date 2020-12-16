@@ -15,6 +15,7 @@ import { SearchProductComponent } from './components/search-product/search-produ
 import { LoginComponent } from './components/login/login.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import {BezorgwijzePipe} from './pipes/bezorgwijze.pipe';
+import { GebruikerGegevensComponent } from './components/gebruiker-gegevens/gebruiker-gegevens.component';
 
 const routes: Route[] = [
   {path: 'producten', component: ProductOverviewComponent},
@@ -32,7 +33,8 @@ const routes: Route[] = [
     ProductDetailsComponent,
     SearchProductComponent,
     LoginComponent,
-    AddProductComponent
+    AddProductComponent,
+    GebruikerGegevensComponent
   ],
   imports: [      // componenten van een ander die ik nodig heb
     BrowserModule,

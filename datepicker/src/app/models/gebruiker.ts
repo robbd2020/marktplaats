@@ -13,6 +13,6 @@ export interface Gebruiker {
   huisnummertoevoeging?: string;
   isActief?: boolean;
   winkelwagen: Winkelwagen;
-  ondersteundeBezorgwijzeLijst?: Set<Bezorgwijze>;
+  ondersteundeBezorgwijzeLijst?: Array<Bezorgwijze>;
 
 }

@@ -15,6 +15,8 @@ export class GebruikerService {
 
   ingelogdeGebruiker: Gebruiker;
   ingelogd$ = new Subject<Gebruiker>();
+  bericht$ = new Subject<string>();
+
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -23,7 +25,7 @@ export class GebruikerService {
     this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((data) => {
       this.ingelogdeGebruiker = data;
       this.ingelogd$.next(data);
-    });
+    },  error => this.bericht$.next('Inlogpoging gefaald. Probier opnieuw'));
   }
 
   uitloggen(): void {
@@ -31,9 +33,17 @@ export class GebruikerService {
     this.router.navigate(['/login']);
   }
 
+  getIngelogdeGebruiker(g: Gebruiker): void {
+    this.http.get<Gebruiker>(`${this.url}/gebruikers/` + g.id).subscribe((data) =>
+      this.ingelogdeGebruiker = data );
+  }
 
   edit(c: Gebruiker): void {
-    this.http.put(`${this.url}/gebruikers/${this.ingelogdeGebruiker.id}`, c).subscribe();
+    this.http.put(`${this.url}/gebruikers/${this.ingelogdeGebruiker.id}`, c).subscribe((data) => {
+      this.getIngelogdeGebruiker(c);
+      this.bericht$.next('Gebruikergegevens zijn aangepast');
+    }, error => { this.bericht$.next('Foutmelding: ' + error.getMessage());
+    });
   }
 
   delete(c: Gebruiker): void {

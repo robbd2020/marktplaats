@@ -17,7 +17,7 @@
       <span *ngIf="addLoginForm.get('wachtwoord')?.touched && addLoginForm.get('wachtwoord')?.errors?.required">Vul in aub</span>
       <span *ngIf="addLoginForm.get('wachtwoord')?.touched && addLoginForm.get('wachtwoord')?.errors?.minlength">Minimaal acht tekens</span>
     </div>
-<!--    <br>-->
+    <h3>{{this.gebruikerService.bericht$ | async}}</h3>
     <br>
     <button>Verstuur</button>
   </form>

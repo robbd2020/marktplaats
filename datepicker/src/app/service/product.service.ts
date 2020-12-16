@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../models/product';
+import {serverUrl} from '../../environments/environment';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import {Product} from '../models/product';
 })
 export class ProductService {
 
-  private url = 'http://localhost:9080/mp/resources/producten';
+  private url =  serverUrl + '/producten';
 
   productenUpdated = new Subject<Product[]>(); // event, can contain Product[]
   bericht$ = new Subject<string>();

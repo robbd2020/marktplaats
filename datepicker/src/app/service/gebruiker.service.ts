@@ -4,13 +4,14 @@ import {Gebruiker} from '../models/gebruiker';
 import {Login} from '../models/login';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
+import {serverUrl} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GebruikerService {
 
-  private url = 'http://localhost:9080/mp/resources';
+  private url = serverUrl;
 
   ingelogdeGebruiker: Gebruiker;
   ingelogd$ = new Subject<Gebruiker>();

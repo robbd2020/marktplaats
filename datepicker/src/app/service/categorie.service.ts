@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Categorie} from '../models/categorie';
+import {serverUrl} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
 
-  private url = 'http://localhost:9080/mp/resources/categorieen';
+  private url = serverUrl + '/categorieen';
 
   categorieenUpdated$ = new Subject<Categorie[]>();
 

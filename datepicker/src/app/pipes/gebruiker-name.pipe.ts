@@ -3,8 +3,11 @@ import {Gebruiker} from '../models/gebruiker';
 
 @Pipe({name: 'gebruikerName'})
 export class GebruikerNamePipe implements PipeTransform {
+  private naamwoonplaats: string;
   transform(gebruiker: Gebruiker): any {
-    return `${gebruiker.voornaam} ${gebruiker.achternaam} uit ${gebruiker.woonplaats}`;
+    this.naamwoonplaats = gebruiker.woonplaats === undefined ? `` : ` uit ${gebruiker.woonplaats}`;
+
+    return `${gebruiker.voornaam} ${gebruiker.achternaam}${this.naamwoonplaats}`;
   }
 
 }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GebruikerService} from '../../service/gebruiker.service';
 import {Gebruiker} from '../../models/gebruiker';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../models/categorie';
 import {CategorieService} from '../../service/categorie.service';
 import {ProductService} from '../../service/product.service';
@@ -36,12 +36,12 @@ export class GebruikerGegevensComponent {
       wachtwoord: this.gebruiker.wachtwoord,
       voornaam: [{value: this.gebruiker.voornaam, disabled: this.lock}, [Validators.required]],
       achternaam: [{value: this.gebruiker.achternaam, disabled: this.lock}, [Validators.required]],
-      emailadres: [{value: this.gebruiker.emailadres, disabled: this.lock}, [Validators.required, Validators.email]],
+      emailadres: [{value: this.gebruiker.emailadres, disabled: this.lock}, [Validators.required, emailValidator]],
       huisnummer: [{
         value: this.gebruiker.huisnummer,
         disabled: this.lock
       }, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      huisnummertoevoeging: [{value: this.gebruiker.huisnummertoevoeging, disabled: this.lock}, [Validators.required]],
+      huisnummertoevoeging: [{value: this.gebruiker.huisnummertoevoeging, disabled: this.lock}],
       postcode: [{
         value: this.gebruiker.postcode,
         disabled: this.lock
@@ -54,16 +54,10 @@ export class GebruikerGegevensComponent {
     });
   }
 
-
   addGebruiker(): void {
     this.addGebruikerForm.controls.ondersteundeBezorgwijzeLijst.setValue(this.ondersteundeBezorgwijzen);
     this.gebruikerService.edit(this.addGebruikerForm.value);
     this.changeEditing();
-  }
-
-  clearCheckboxes(): void {
-    const checkArray: FormArray = this.addGebruikerForm.get('ondersteundeBezorgwijzeLijst') as FormArray;
-    checkArray.clear();
   }
 
   changeEditing(): void {
@@ -71,9 +65,7 @@ export class GebruikerGegevensComponent {
     this.lock ? this.addGebruikerForm.disable() : this.addGebruikerForm.enable();
   }
 
-
   onCheckboxChange(e, item: Bezorgwijze): void {
-
     if (e.target.checked) {
       if (this.ondersteundeBezorgwijzen.indexOf(e.value) < 0) {
         this.ondersteundeBezorgwijzen.push(item);
@@ -88,3 +80,12 @@ export class GebruikerGegevensComponent {
   }
 }
 
+// tslint:disable-next-line:typedef
+function emailValidator(control: AbstractControl) {
+  // required validator should handle empty values
+  if (!control.value) {
+    return null;
+  }
+  const regex = /^.+@.+\.[a-zA-Z]+$/;
+  return regex.test(control.value) ? null : {email: {valid: false}};
+}

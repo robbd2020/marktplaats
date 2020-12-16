@@ -25,7 +25,7 @@ export class GebruikerService {
     this.http.post<Gebruiker>(`${this.url}/login`, l).subscribe((data) => {
       this.ingelogdeGebruiker = data;
       this.ingelogd$.next(data);
-    },  error => this.bericht$.next('Inlogpoging gefaald. Probier opnieuw'));
+    },  error => this.bericht$.next('Inlogpoging gefaald. Probeer opnieuw!'));
   }
 
   uitloggen(): void {

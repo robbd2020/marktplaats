@@ -44,6 +44,13 @@
       <span *ngIf="addGebruikerForm.get('postcode')?.touched && addGebruikerForm.get('postcode')?.errors?.pattern">Een geldige postcode graag</span>
     </div>
     <div>
+      <label for="woonplaats">Woonplaats:</label>
+      <input type="text" id="woonplaats" formControlName="woonplaats">
+      <span *ngIf="addGebruikerForm.get('woonplaats')?.touched && addGebruikerForm.get('woonplaats')?.invalid">*</span>
+      <span *ngIf="addGebruikerForm.get('woonplaats')?.touched && addGebruikerForm.get('woonplaats')?.errors?.required">Vul in aub</span>
+      <span *ngIf="addGebruikerForm.get('woonplaats')?.touched && addGebruikerForm.get('woonplaats')?.errors?.pattern">Alleen letters a.u.b.</span>
+    </div>
+    <div>
       <label>Bezorgwijzen:</label>
       <div *ngFor="let item of alleBezorgwijzen; let i=index">
         <label>
@@ -61,7 +68,7 @@
     </div>
     <h3>{{this.gebruikerService.bericht$ | async}}</h3>
     <ng-container *ngIf="this.lock">
-      <button type="button" (click)="this.changeEditing()">Pas aan</button>
+      <button type="button" (click)="this.changeEditing()">Wijzig</button>
     </ng-container>
     <ng-container *ngIf="!this.lock">
       <button type="button" (click)="this.changeEditing()">Annuleer</button>
